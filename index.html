@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Librarianly</title>
+    <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=TikTok+Sans" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "TikTok Sans", sans-serif;
+        background: #fafbfc;
+        min-height: 100vh;
+        color: #1a1a1a;
+        line-height: 1.6;
+        /* font-family: 'TikTok Sans', sans-serif; */
+      }
+
+      .tiktok-sans-font {
+        font-family: "TikTok Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: normal;
+        font-style: normal;
+        font-variation-settings: "slnt" 0, "wdth" 100;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .header {
+        background: white;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: 70px;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #111827;
+        letter-spacing: -0.025em;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: #111827;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #374151;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(17, 24, 39, 0.15);
+      }
+
+      .btn-secondary {
+        background: #f9fafb;
+        color: #374151;
+        border: 1px solid #e5e7eb;
+      }
+
+      .btn-secondary:hover {
+        background: #f3f4f6;
+        border-color: #d1d5db;
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: #6b7280;
+        border: 1px solid transparent;
+      }
+
+      .btn-ghost:hover {
+        background: #f9fafb;
+        color: #374151;
+      }
+
+      .main-content {
+        padding: 32px 0;
+      }
+
+      .stats-grid {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 32px;
+        padding: 10px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stat-card {
+        background: white;
+        border-radius: 7px;
+        padding: 24px;
+        border: 1px solid #e5e7eb;
+        transition: all 0.2s ease;
+        width: 32%;
+      }
+
+      .stat-card:hover {
+        border-color: #d1d5db;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .stat-number {
+        font-size: 32px;
+        font-weight: 700;
+        color: #111827;
+        display: block;
+        line-height: 1;
+      }
+
+      .stat-label {
+        color: #6b7280;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 4px;
+      }
+
+      .search-section {
+        margin-bottom: 32px;
+      }
+
+      .search-bar {
+        position: relative;
+        max-width: 500px;
+        margin: 10px;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 12px 16px 12px 44px;
+        border: 1px solid #e5e7eb;
+        border-radius: 7px;
+        background: white;
+        font-size: 16px;
+        transition: all 0.2s ease;
+      }
+
+      .search-bar input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        mix-blend-mode: multiply;
+      }
+
+      .books-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+        margin: 10px;
+      }
+
+      .book-card {
+        background: white;
+        border-radius: 7px;
+        padding: 24px;
+        border: 1px solid #e5e7eb;
+        transition: all 0.2s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .book-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        border-color: #d1d5db;
+      }
+
+      .book-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      .book-author {
+        color: #6b7280;
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+
+      .book-category {
+        display: inline-block;
+        background: #f3f4f6;
+        color: #374151;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 16px;
+      }
+
+      .book-description {
+        color: #6b7280;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .book-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 16px;
+        border-top: 1px solid #f3f4f6;
+      }
+
+      .book-date {
+        color: #9ca3af;
+        font-size: 12px;
+      }
+
+      .delete-btn {
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .delete-btn:hover {
+        background: #fee2e2;
+        border-color: #fca5a5;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 64px 24px;
+        color: #6b7280;
+        grid-column: 1 / -1;
+      }
+
+      .empty-state-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+        opacity: 0.5;
+      }
+
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.95);
+        background: white;
+        border-radius: 1px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        z-index: 1001;
+        transition: all 0.2s ease;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .modal-overlay.active .modal {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .modal-header {
+        padding: 24px 24px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .modal-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #111827;
+      }
+
+      .close-btn {
+        background: #f9fafb;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6b7280;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .close-btn:hover {
+        background: #f3f4f6;
+        color: #374151;
+      }
+
+      .modal-body {
+        padding: 24px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        color: #374151;
+        font-weight: 500;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        background: white;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        padding-top: 20px;
+        border-top: 1px solid #f3f4f6;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .book-card {
+        animation: fadeInUp 0.4s ease-out;
+      }
+
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: row;
+          gap: 16px;
+          align-items: flex-start;
+          font-size: small;
+          align-items: center;
+          justify-content: center;
+        }
+        .book-card{
+            width: 83%;
+        }
+        .book-grid{
+            align-items: center;
+            justify-content: center;
+        }
+        .header-content button{
+            font-size: 4;
+            padding: 7px 10px;
+        }
+        .stats-grid{
+            gap: 5px;
+            height: 70px;
+        }
+        .stat-card{
+            padding: 5px;
+            padding-top: 20px;
+            font: 12px;
+        }
+
+        .header-actions {
+          width: 100%;
+          justify-content: flex-start;
+        }
+
+        .stat-label{
+            font-size: smaller;
+        }
+        .modal {
+          width: 95%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="">
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <div class="logo-icon">
+              <img src="logo.jpg" alt="" height="36px" width="auto" />
+            </div>
+            <h1>Library</h1>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="addBookBtn">Add Book</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number" id="totalBooks">0</span>
+          <span class="stat-label">Books</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="totalCategories">0</span>
+          <span class="stat-label">Categories</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="totalAuthors">0</span>
+          <span class="stat-label">Authors</span>
+        </div>
+      </div>
+
+      <div class="search-section">
+        <div class="search-bar">
+          <span class="search-icon"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/652/218/small_2x/magnifying-glass-icon-isolated-on-white-background-search-illustration-vector.jpg" alt=""></span>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search books by title, author, or category..."
+          />
+        </div>
+      </div>
+
+      <div class="books-grid" id="booksContainer">
+        <div class="empty-state">
+          <div class="empty-state-icon">📖</div>
+          <h3>No books in your library yet</h3>
+          <p>Add your first book to get started!</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Add Book Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Add New Book</h2>
+          <button class="close-btn" id="closeModalBtn">✕</button>
+        </div>
+        <div class="modal-body">
+          <form id="addBookForm">
+            <div class="form-group">
+              <label for="title">Book Title *</label>
+              <input type="text" id="title" required />
+            </div>
+            <div class="form-group">
+              <label for="author">Author *</label>
+              <input type="text" id="author" required />
+            </div>
+            <div class="form-group">
+              <label for="category">Category *</label>
+              <select id="category" required>
+                <option value="">Select Category</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Non-Fiction">Non-Fiction</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+                <option value="Biography">Biography</option>
+                <option value="Romance">Romance</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Self-Help">Self-Help</option>
+                <option value="Technology">Technology</option>
+                <option value="Business">Business</option>
+                <option value="Philosophy">Philosophy</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="isbn">ISBN</label>
+              <input type="text" id="isbn" placeholder="978-0-123456-78-9" />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                placeholder="Brief description of the book..."
+              ></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="cancelBtn">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">Add Book</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class LibraryDatabase {
+        constructor() {
+          this.books = [];
+          this.nextId = 1;
+        }
+
+        addBook(bookData) {
+          const book = {
+            id: this.nextId++,
+            ...bookData,
+            dateAdded: new Date().toLocaleDateString(),
+          };
+          this.books.push(book);
+          return book;
+        }
+
+        deleteBook(id) {
+          this.books = this.books.filter((book) => book.id !== id);
+        }
+
+        searchBooks(query) {
+          if (!query) return this.books;
+
+          const lowerQuery = query.toLowerCase();
+          return this.books.filter(
+            (book) =>
+              book.title.toLowerCase().includes(lowerQuery) ||
+              book.author.toLowerCase().includes(lowerQuery) ||
+              book.category.toLowerCase().includes(lowerQuery)
+          );
+        }
+
+        getAllBooks() {
+          return this.books;
+        }
+
+        getStats() {
+          const categories = new Set(this.books.map((book) => book.category));
+          const authors = new Set(this.books.map((book) => book.author));
+
+          return {
+            totalBooks: this.books.length,
+            totalCategories: categories.size,
+            totalAuthors: authors.size,
+          };
+        }
+      }
+
+      const db = new LibraryDatabase();
+
+      // Add sample books
+      const sampleBooks = [
+  {
+    title: "The Design of Everyday Things",
+    author: "Don Norman",
+    category: "Technology",
+    isbn: "978-0-465-05065-9",
+    description: "A powerful primer on how design serves as the communication between object and user.",
+  },
+  {
+    title: "Sapiens",
+    author: "Yuval Noah Harari",
+    category: "History",
+    isbn: "978-0-062-31609-6",
+    description: "A brief history of humankind, exploring how we came to dominate the world.",
+  },
+  {
+    title: "The Midnight Library",
+    author: "Matt Haig",
+    category: "Fiction",
+    isbn: "978-0-525-55948-1",
+    description: "Between life and death there is a library, and within that library, the shelves go on forever.",
+  },
+  {
+    title: "Atomic Habits",
+    author: "James Clear",
+    category: "Self-Help",
+    isbn: "978-0-735-21129-2",
+    description: "An easy and proven way to build good habits and break bad ones.",
+  },
+  {
+    title: "The Secret History",
+    author: "Donna Tartt",
+    category: "Fiction",
+    isbn: "978-1-4000-3290-6",
+    description: "A chilling exploration of intellect, aesthetics, and moral decay in a group of elite students.",
+  },
+  {
+    title: "If We Were Villains",
+    author: "M.L. Rio",
+    category: "Mystery",
+    isbn: "978-1-250-09529-9",
+    description: "A Shakespearean tale of love, betrayal, and tragedy among theatre students.",
+  },
+  {
+    title: "Frankenstein",
+    author: "Mary Shelley",
+    category: "Classic",
+    isbn: "978-0-486-28211-4",
+    description: "A gothic tale questioning the boundaries of science and humanity.",
+  },
+  {
+    title: "The Picture of Dorian Gray",
+    author: "Oscar Wilde",
+    category: "Classic",
+    isbn: "978-0-486-28489-7",
+    description: "A haunting portrait of vanity, youth, and moral corruption.",
+  },
+  {
+    title: "Jane Eyre",
+    author: "Charlotte Brontë",
+    category: "Classic",
+    isbn: "978-0-14-144114-6",
+    description: "A strong-willed orphan navigates love, identity, and independence in Victorian England.",
+  },
+  {
+    title: "Surely You're Joking, Mr. Feynman!",
+    author: "Richard Feynman",
+    category: "Science",
+    isbn: "978-0-393-31604-9",
+    description: "Adventures of a curious Nobel Prize-winning physicist, told with humor and wonder.",
+  },
+  {
+    title: "Brief Answers to the Big Questions",
+    author: "Stephen Hawking",
+    category: "Science",
+    isbn: "978-1-9848-1709-4",
+    description: "Hawking's thoughts on the universe, AI, God, and the future of humanity.",
+  },
+  {
+    title: "Meditations",
+    author: "Marcus Aurelius",
+    category: "Philosophy",
+    isbn: "978-0-14-044933-4",
+    description: "Stoic wisdom from a Roman emperor on discipline, purpose, and self-mastery.",
+  },
+  {
+    title: "Deep Work",
+    author: "Cal Newport",
+    category: "Self-Help",
+    isbn: "978-1-4555-8660-2",
+    description: "Rules for focused success in a distracted world.",
+  },
+  {
+    title: "Fahrenheit 451",
+    author: "Ray Bradbury",
+    category: "Dystopian",
+    isbn: "978-1-4516-7331-9",
+    description: "A future where books are burned and independent thinking is forbidden.",
+  },
+  {
+    title: "The Selfish Gene",
+    author: "Richard Dawkins",
+    category: "Science",
+    isbn: "978-0-19-878860-7",
+    description: "An evolutionary biology classic introducing the gene-centered view of life.",
+  },
+  {
+    title: "The 7 Habits of Highly Effective People",
+    author: "Stephen R. Covey",
+    category: "Self-Help",
+    isbn: "978-1-4516-3961-2",
+    description: "Timeless principles of personal and professional effectiveness.",
+  },
+  {
+    title: "Man’s Search for Meaning",
+    author: "Viktor E. Frankl",
+    category: "Psychology",
+    isbn: "978-0-8070-1427-9",
+    description: "A Holocaust survivor’s psychological journey through suffering, meaning, and hope.",
+  },
+  {
+    title: "The Bell Jar",
+    author: "Sylvia Plath",
+    category: "Fiction",
+    isbn: "978-0-06-114851-4",
+    description: "A haunting depiction of mental illness and societal pressure in a young woman's life.",
+  },
+  {
+    title: "Thinking, Fast and Slow",
+    author: "Daniel Kahneman",
+    category: "Psychology",
+    isbn: "978-0-374-53355-7",
+    description: "A Nobel Prize-winner explores the dual systems that drive our thinking.",
+  },
+  {
+    title: "The Power of Now",
+    author: "Eckhart Tolle",
+    category: "Spirituality",
+    isbn: "978-1-57731-480-6",
+    description: "A guide to spiritual awakening through present-moment awareness.",
+  },
+  {
+    title: "Wuthering Heights",
+    author: "Emily Brontë",
+    category: "Classic",
+    isbn: "978-0-14-143955-6",
+    description: "A brooding tale of love, revenge, and the moors of Yorkshire.",
+  },
+  {
+    title: "The Metamorphosis",
+    author: "Franz Kafka",
+    category: "Classic",
+    isbn: "978-0-486-26452-3",
+    description: "A surreal tale of alienation and transformation.",
+  },
+  {
+    title: "The Demon-Haunted World",
+    author: "Carl Sagan",
+    category: "Science",
+    isbn: "978-0-345-40946-9",
+    description: "A defense of scientific thinking in an age of superstition.",
+  },
+  {
+    title: "So Good They Can't Ignore You",
+    author: "Cal Newport",
+    category: "Career",
+    isbn: "978-1-4555-1309-7",
+    description: "Why skills trump passion in the quest for meaningful work.",
+  },
+  {
+    title: "The Trial",
+    author: "Franz Kafka",
+    category: "Classic",
+    isbn: "978-0-8052-1044-7",
+    description: "A nightmarish vision of guilt, bureaucracy, and the unknown.",
+  },
+  {
+    title: "The Brothers Karamazov",
+    author: "Fyodor Dostoevsky",
+    category: "Classic",
+    isbn: "978-0-375-75736-3",
+    description: "A philosophical epic about faith, doubt, and familial conflict.",
+  },
+  {
+    title: "The Elegant Universe",
+    author: "Brian Greene",
+    category: "Physics",
+    isbn: "978-0-393-05858-1",
+    description: "An introduction to string theory and the search for a unified theory of physics.",
+  },
+  {
+    title: "The War of Art",
+    author: "Steven Pressfield",
+    category: "Creativity",
+    isbn: "978-1-936219-02-0",
+    description: "Break through resistance and unleash your creative potential.",
+  },
+  {
+    title: "Flow",
+    author: "Mihaly Csikszentmihalyi",
+    category: "Psychology",
+    isbn: "978-0-06-133920-2",
+    description: "The psychology of optimal experience and how to achieve it.",
+  },
+  {
+    title: "Zero: The Biography of a Dangerous Idea",
+    author: "Charles Seife",
+    category: "Mathematics",
+    isbn: "978-0-14-029647-1",
+    description: "The story of how a number came to shape science and philosophy.",
+  },
+  {
+    title: "How to Win Friends and Influence People",
+    author: "Dale Carnegie",
+    category: "Self-Help",
+    isbn: "978-0-671-02703-2",
+    description: "Timeless advice on communication, influence, and leadership.",
+  },
+  {
+    title: "Ego Is the Enemy",
+    author: "Ryan Holiday",
+    category: "Self-Help",
+    isbn: "978-1-59184-781-6",
+    description: "How to master your ego and achieve greatness.",
+  },
+  {
+    title: "The Art of Learning",
+    author: "Josh Waitzkin",
+    category: "Performance",
+    isbn: "978-0-7432-7744-8",
+    description: "An approach to excellence through mindset and deliberate practice.",
+  },
+  {
+    title: "What Is Life?",
+    author: "Erwin Schrödinger",
+    category: "Biology",
+    isbn: "978-1-78139-548-4",
+    description: "A foundational text connecting physics with biology and genetics.",
+  },
+  {
+    title: "Les Misérables",
+    author: "Victor Hugo",
+    category: "Classic",
+    isbn: "978-0-14-044430-8",
+    description: "An epic tale of redemption, love, and revolution.",
+  },
+  {
+    title: "The Man Who Knew Infinity",
+    author: "Robert Kanigel",
+    category: "Biography",
+    isbn: "978-1-4711-4631-2",
+    description: "The life of mathematical genius Srinivasa Ramanujan.",
+  },
+];
+
+
+      sampleBooks.forEach((book) => db.addBook(book));
+
+      // DOM Elements
+      const addBookBtn = document.getElementById("addBookBtn");
+      const modalOverlay = document.getElementById("modalOverlay");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const cancelBtn = document.getElementById("cancelBtn");
+      const addBookForm = document.getElementById("addBookForm");
+      const searchInput = document.getElementById("searchInput");
+      const booksContainer = document.getElementById("booksContainer");
+
+      // Modal Functions
+      function openModal() {
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+        addBookForm.reset();
+      }
+
+      // Event Listeners
+      addBookBtn.addEventListener("click", openModal);
+      closeModalBtn.addEventListener("click", closeModal);
+      cancelBtn.addEventListener("click", closeModal);
+
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      function renderBooks(books = db.getAllBooks()) {
+        const container = document.getElementById("booksContainer");
+
+        if (books.length === 0) {
+          container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No books found</h3>
+                        <p>Try adjusting your search terms</p>
+                    </div>
+                `;
+          return;
+        }
+
+        container.innerHTML = books
+          .map(
+            (book, index) => `
+                <div class="book-card" style="animation-delay: ${index * 0.1}s">
+                    <div class="book-title">${book.title}</div>
+                    <div class="book-author">by ${book.author}</div>
+                    <div class="book-category">${book.category}</div>
+                    <div class="book-description">${
+                      book.description || "No description available."
+                    }</div>
+                    ${
+                      book.isbn
+                        ? `<div style="color: #9ca3af; font-size: 12px; margin-bottom: 16px;">ISBN: ${book.isbn}</div>`
+                        : ""
+                    }
+                    <div class="book-footer">
+                        <div class="book-date">Added ${book.dateAdded}</div>
+                        <button class="delete-btn" onclick="deleteBook(${
+                          book.id
+                        })">Delete</button>
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      function updateStats() {
+        const stats = db.getStats();
+        document.getElementById("totalBooks").textContent = stats.totalBooks;
+        document.getElementById("totalCategories").textContent =
+          stats.totalCategories;
+        document.getElementById("totalAuthors").textContent =
+          stats.totalAuthors;
+      }
+
+      function deleteBook(id) {
+        if (confirm("Are you sure you want to delete this book?")) {
+          db.deleteBook(id);
+          renderBooks();
+          updateStats();
+        }
+      }
+
+      // Form submission
+      addBookForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const bookData = {
+          title: document.getElementById("title").value,
+          author: document.getElementById("author").value,
+          category: document.getElementById("category").value,
+          isbn: document.getElementById("isbn").value,
+          description: document.getElementById("description").value,
+        };
+
+        db.addBook(bookData);
+        renderBooks();
+        updateStats();
+        closeModal();
+
+        // Show success message
+        const btn = addBookBtn;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "<span>✓</span> Book Added!";
+        btn.style.background = "#10b981";
+
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.background = "";
+        }, 2000);
+      });
+
+      // Search functionality
+      searchInput.addEventListener("input", function (e) {
+        const results = db.searchBooks(e.target.value);
+        renderBooks(results);
+      });
+
+      // Initialize
+      renderBooks();
+      updateStats();
+    </script>
+  </body>
+</html>
